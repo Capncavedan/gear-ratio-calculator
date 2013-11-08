@@ -6,15 +6,11 @@ class Calculator
   attr_accessor :tire_size
 
   def gain_ratios
-    ret = []
-    chainring_sizes.each do |chainring_size|
-      ret2 = []
-      cassette_cog_sizes.each do |cog_size|
-        ret2 << gain_ratio(chainring_size, cog_size)
+    [].tap do |ret|
+      chainring_sizes.each do |chainring_size|
+        ret << cassette_cog_sizes.map{ |cog_size| gain_ratio(chainring_size, cog_size) }
       end
-      ret << ret2
     end
-    ret
   end
 
 
@@ -35,7 +31,7 @@ class Calculator
       "700x32c" => 2155,
       "700x35c" => 2168,
       "700x38c" => 2180,
-      "700x40c" => nil,
+      "700x40c" => nil,  # missing
       "700x44c" => 2224,
       "700x50c" => 2293,
       "700x56c" => 2325,
