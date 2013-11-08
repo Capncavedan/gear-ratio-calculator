@@ -2,7 +2,7 @@ class Calculator
 
   attr_accessor :chainring_sizes
   attr_accessor :cassette_cog_sizes
-  attr_accessor :crank_length_in
+  attr_accessor :crank_length
   attr_accessor :tire_size
 
   def gain_ratios
@@ -30,7 +30,7 @@ class Calculator
 
 
   def gain_ratio(chainring_size, cog_size)
-    ratio = wheel_radius / crank_length_in * chainring_size / cog_size
+    ratio = wheel_radius / crank_length * chainring_size / cog_size
     (ratio * 100).to_i/100.0
   end
 
@@ -63,7 +63,7 @@ class Calculator
   end
 
   def crank_circumference
-    crank_length_in * 2.0 * Math::PI
+    crank_length * 2.0 * Math::PI
   end
 
 end
