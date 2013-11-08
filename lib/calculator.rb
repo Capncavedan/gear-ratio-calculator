@@ -2,7 +2,7 @@ class Calculator
 
   attr_accessor :chainring_sizes
   attr_accessor :cassette_cog_sizes
-  attr_accessor :crank_length_in_mm
+  attr_accessor :crank_length_in
   attr_accessor :tire_size
 
   def gain_ratios
@@ -18,7 +18,7 @@ class Calculator
     gain_ratios.each do |gain_ratio_set|
       ret2 = []
       gain_ratio_set.each do |gain_ratio|
-        kph = cadence * gain_ratio * crank_circumference_mm * minutes_per_kilometer
+        kph = cadence * gain_ratio * crank_circumference * minutes_per_kilometer
         ret2 << (kph * 100).to_i/100.0
       end
       ret << ret2
@@ -30,11 +30,11 @@ class Calculator
 
 
   def gain_ratio(chainring_size, cog_size)
-    ratio = wheel_radius_mm / crank_length_in_mm * chainring_size / cog_size
+    ratio = wheel_radius / crank_length_in * chainring_size / cog_size
     (ratio * 100).to_i/100.0
   end
 
-  def wheel_circumference_mm
+  def wheel_circumference
     {
       "20x1.75" => 1491,
 
@@ -54,16 +54,16 @@ class Calculator
     }[tire_size] || 0
   end
 
-  def wheel_radius_mm
-    wheel_circumference_mm / Math::PI / 2.0
+  def wheel_radius
+    wheel_circumference / Math::PI / 2.0
   end
 
   def minutes_per_kilometer
     60.0 / 1000.0 / 1000.0
   end
 
-  def crank_circumference_mm
-    crank_length_in_mm * 2.0 * Math::PI
+  def crank_circumference
+    crank_length_in * 2.0 * Math::PI
   end
 
 end
