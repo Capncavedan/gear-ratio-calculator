@@ -45,4 +45,16 @@ describe Calculator do
     s.gain_ratios.should eql [ [ 4.12 ] ]
   end
 
+  describe "#kph_speeds_at_cadence" do
+    it "is 21.55kph for a mountain bike at 75 rpm" do
+      s = Calculator.new
+      s.chainring_sizes    = [33]
+      s.cassette_cog_sizes = [16]
+      s.crank_length_in_mm = 185
+      s.tire_size          = "29x2.3"
+
+      s.kph_speeds_at_cadence(75).should eql [ [ 21.55 ] ]
+    end
+  end
+
 end
