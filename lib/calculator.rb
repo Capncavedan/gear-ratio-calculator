@@ -36,6 +36,8 @@ class Calculator
 
   def wheel_circumference_mm
     {
+      "20x1.75" => 1491,
+
       "700x20c" => 2086,
       "700x23c" => 2097,
       "700x25c" => 2105,
@@ -43,7 +45,7 @@ class Calculator
       "700x32c" => 2155,
       "700x35c" => 2168,
       "700x38c" => 2180,
-      "700x40c" => nil,  # missing
+      "700x40c" => 2200,  # guessing
       "700x44c" => 2224,
       "700x50c" => 2293,
       "700x56c" => 2325,
