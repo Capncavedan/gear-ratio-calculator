@@ -8,10 +8,12 @@ class Calculator
   def gain_ratios
     ret = []
     chainring_sizes.each do |chainring_size|
+      ret2 = []
       cassette_cog_sizes.each do |cog_size|
         ratio = wheel_radius_mm / crank_length_in_mm * chainring_size / cog_size
-        ret << (ratio * 100).to_i/100.0
+        ret2 << (ratio * 100).to_i/100.0
       end
+      ret << ret2
     end
     ret
   end
@@ -21,8 +23,9 @@ class Calculator
 
   def wheel_circumference_mm
     {
-      "700x35c" => 2205.0
-    }[tire_size]
+      "700x28c" => 2159,
+      "700x35c" => 2205
+    }[tire_size] || 0
   end
 
   def wheel_radius_mm
