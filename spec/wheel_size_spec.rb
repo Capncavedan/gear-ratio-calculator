@@ -12,6 +12,10 @@ describe GearRatio::WheelSize do
       GearRatio::WheelSize.circumference_of("700 X 25C").should eql 2105
     end
 
+    it "is nil when unknown" do
+      GearRatio::WheelSize.circumference_of("bogus").should be_nil
+    end
+
   end
 
 end
