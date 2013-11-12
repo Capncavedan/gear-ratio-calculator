@@ -5,6 +5,13 @@ class Calculator
   attr_accessor :crank_length
   attr_accessor :wheel_circumference
 
+  def initialize(chainring_sizes: [], cassette_cog_sizes: [], crank_length: 0, wheel_circumference: 0)
+    @chainring_sizes      = chainring_sizes
+    @cassette_cog_sizes   = cassette_cog_sizes
+    @crank_length         = crank_length
+    @wheel_circumference  = wheel_circumference
+  end
+
   def gain_ratios
     ret = []
     chainring_sizes.each do |chainring_size|

@@ -2,7 +2,20 @@ require 'spec_helper'
 
 describe Calculator do
 
-    describe "#gain_ratios" do
+  describe "initialization" do
+    it "is possible" do
+      calc = Calculator.new chainring_sizes: [40],
+              cassette_cog_sizes: [11, 13, 15, 17, 19, 21, 24, 28, 32, 36],
+              crank_length: 175,
+              wheel_circumference: 2168
+      calc.chainring_sizes.should eql [40]
+      calc.cassette_cog_sizes.should eql [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
+      calc.crank_length.should eql 175
+      calc.wheel_circumference.should eql 2168
+    end
+  end
+
+  describe "#gain_ratios" do
     it "calculates a set of gain ratios for a 1x10 with 175mm crankarms" do
       s = Calculator.new
       s.chainring_sizes     = [40]
