@@ -9,20 +9,67 @@ describe GearRatio::Calculator do
   describe "initialization" do
     it "is possible" do
       calc = GearRatio::Calculator.new chainring_sizes: [40],
-              cassette_cog_sizes: [11, 13, 15, 17, 19, 21, 24, 28, 32, 36],
+              cog_sizes: [11, 13, 15, 17, 19, 21, 24, 28, 32, 36],
               crank_length: 175,
               wheel_circumference: 2168
       calc.chainring_sizes.should eql [40]
-      calc.cassette_cog_sizes.should eql [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
+      calc.cog_sizes.should eql [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
       calc.crank_length.should eql 175
       calc.wheel_circumference.should eql 2168
     end
+
+    describe "#initialize_chainring_sizes" do
+      it "reverse-sorts the values" do
+        @calc.send(:initialize_chainring_sizes, [30, 39, 52]).should eql [52, 39, 30]
+      end
+
+      it "works with a string of values" do
+        @calc.send(:initialize_chainring_sizes, "30 39 52").should eql [52, 39, 30]
+      end
+
+      it "works with a single value" do
+        @calc.send(:initialize_chainring_sizes, "40").should eql [40]
+      end
+
+      it "works with a single value inside an array" do
+        @calc.send(:initialize_chainring_sizes, [40]).should eql [40]
+      end
+
+      it "works with a single string inside an array" do
+        @calc.send(:initialize_chainring_sizes, ["40"]).should eql [40]
+      end
+    end
+
+
+    describe "#initialize_cog_sizes" do
+      it "sorts the values" do
+        @calc.send(:initialize_cog_sizes, [15, 14, 13, 12, 11]).should eql [11, 12, 13, 14, 15]
+      end
+
+      it "works with a string of values" do
+        @calc.send(:initialize_cog_sizes, "15, 14, 13, 12, 11").should eql [11, 12, 13, 14, 15]
+      end
+
+      it "works with a single value" do
+        @calc.send(:initialize_cog_sizes, "18").should eql [18]
+      end
+
+      it "works with a single value inside an array" do
+        @calc.send(:initialize_cog_sizes, [18]).should eql [18]
+      end
+
+      it "works with a single string inside an array" do
+        @calc.send(:initialize_cog_sizes, ["18"]).should eql [18]
+      end
+    end
+
   end
+
 
   describe "#gain_ratios" do
     it "calculates a set of gain ratios for a 1x10 with 175mm crankarms" do
       @calc.chainring_sizes     = [40]
-      @calc.cassette_cog_sizes  = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
+      @calc.cog_sizes  = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
       @calc.crank_length        = 175
       @calc.wheel_circumference = 2168
 
@@ -31,7 +78,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 1x10 with 200mm crankarms" do
       @calc.chainring_sizes     = [40]
-      @calc.cassette_cog_sizes  = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
+      @calc.cog_sizes  = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
       @calc.crank_length        = 200
       @calc.wheel_circumference = 2200
 
@@ -40,7 +87,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 20 speed double with 190mm crankarms" do
       @calc.chainring_sizes     = [50, 34]
-      @calc.cassette_cog_sizes  = [12, 13, 14, 15, 16, 17, 19, 21, 24, 27]
+      @calc.cog_sizes  = [12, 13, 14, 15, 16, 17, 19, 21, 24, 27]
       @calc.crank_length        = 190
       @calc.wheel_circumference = 2105
 
@@ -50,7 +97,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 21 speed triple with 175mm crankarms" do
       @calc.chainring_sizes     = [52, 42, 30]
-      @calc.cassette_cog_sizes  = [11, 12, 13, 14, 15, 17, 19]
+      @calc.cog_sizes  = [11, 12, 13, 14, 15, 17, 19]
       @calc.crank_length        = 175
       @calc.wheel_circumference = 2136
 
@@ -61,7 +108,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 20-inch wheeled 24 speed triple with 175mm crankarms" do
       @calc.chainring_sizes     = [52, 42, 30]
-      @calc.cassette_cog_sizes  = [12, 14, 16, 18, 21, 24, 28, 32]
+      @calc.cog_sizes  = [12, 14, 16, 18, 21, 24, 28, 32]
       @calc.crank_length        = 175
       @calc.wheel_circumference = 1491
 
@@ -72,7 +119,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a singlespeed 29er with 185mm crankarms" do
       @calc.chainring_sizes     = [33]
-      @calc.cassette_cog_sizes  = [16]
+      @calc.cog_sizes  = [16]
       @calc.crank_length        = 185
       @calc.wheel_circumference = 2325
 
@@ -84,7 +131,7 @@ describe GearRatio::Calculator do
   describe "#kph_speeds_at_cadence" do
     it "is 21.55kph for a mountain bike at 75 rpm" do
       @calc.chainring_sizes     = [33]
-      @calc.cassette_cog_sizes  = [16]
+      @calc.cog_sizes  = [16]
       @calc.crank_length        = 185
       @calc.wheel_circumference = 2325
 

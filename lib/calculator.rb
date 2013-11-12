@@ -3,21 +3,21 @@ class GearRatio
   class Calculator
 
     attr_accessor :chainring_sizes
-    attr_accessor :cassette_cog_sizes
+    attr_accessor :cog_sizes
     attr_accessor :crank_length
     attr_accessor :wheel_circumference
 
-    def initialize(chainring_sizes: [], cassette_cog_sizes: [], crank_length: 0, wheel_circumference: 0)
-      @chainring_sizes      = chainring_sizes
-      @cassette_cog_sizes   = cassette_cog_sizes
-      @crank_length         = crank_length
-      @wheel_circumference  = wheel_circumference
+    def initialize(chainring_sizes: nil, cog_sizes: nil, crank_length: nil, wheel_circumference: nil)
+      @chainring_sizes = initialize_chainring_sizes(chainring_sizes)
+      @cog_sizes = initialize_cog_sizes(cog_sizes)
+      @crank_length = crank_length
+      @wheel_circumference = wheel_circumference
     end
 
     def gain_ratios
       ret = []
       chainring_sizes.each do |chainring_size|
-        ret << cassette_cog_sizes.map{ |cog_size| gain_ratio(chainring_size, cog_size) }
+        ret << cog_sizes.map{ |cog_size| gain_ratio(chainring_size, cog_size) }
       end
       ret
     end
@@ -62,6 +62,14 @@ class GearRatio
     #     "29x2.3"  => 2325
     #   }[tire_size] || 0
     # end
+
+    def initialize_chainring_sizes(chainring_sizes)
+      chainring_sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort.reverse
+    end
+
+    def initialize_cog_sizes(cog_sizes)
+      cog_sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort
+    end
 
     def wheel_radius
       wheel_circumference / Math::PI / 2.0
