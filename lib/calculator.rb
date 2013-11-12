@@ -27,7 +27,7 @@ class GearRatio
       gain_ratios.each do |gain_ratio_set|
         ret2 = []
         gain_ratio_set.each do |gain_ratio|
-          kph = cadence * gain_ratio * crank_circumference * minutes_per_kilometer
+          kph = cadence * gain_ratio * crank_circle_circumference * minutes_per_kilometer
           ret2 << (kph * 100).to_i/100.0
         end
         ret << ret2
@@ -63,23 +63,31 @@ class GearRatio
     #   }[tire_size] || 0
     # end
 
+    # accepts integer, string, array
+    # returns a sorted array of integers
     def initialize_chainring_sizes(chainring_sizes)
       chainring_sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort.reverse
     end
 
+    # accepts integer, string, array
+    # returns a sorted array of integers
     def initialize_cog_sizes(cog_sizes)
       cog_sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort
     end
 
+    def wheel_diameter
+      wheel_circumference / Math::PI
+    end
+
     def wheel_radius
-      wheel_circumference / Math::PI / 2.0
+       wheel_diameter / 2.0
     end
 
     def minutes_per_kilometer
       60.0 / 1000.0 / 1000.0
     end
 
-    def crank_circumference
+    def crank_circle_circumference
       crank_length * 2.0 * Math::PI
     end
 
