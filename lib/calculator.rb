@@ -3,7 +3,7 @@ class Calculator
   attr_accessor :chainring_sizes
   attr_accessor :cassette_cog_sizes
   attr_accessor :crank_length
-  attr_accessor :tire_size
+  attr_accessor :wheel_circumference
 
   def gain_ratios
     ret = []
@@ -34,25 +34,25 @@ class Calculator
     (ratio * 100).to_i/100.0
   end
 
-  def wheel_circumference
-    {
-      "20x1.75" => 1491,
+  # def wheel_circumference
+  #   {
+  #     "20x1.75" => 1491,
 
-      "700x20c" => 2086,
-      "700x23c" => 2097,
-      "700x25c" => 2105,
-      "700x28c" => 2136,
-      "700x32c" => 2155,
-      "700x35c" => 2168,
-      "700x38c" => 2180,
-      "700x40c" => 2200,  # guessing
-      "700x44c" => 2224,
-      "700x50c" => 2293,
-      "700x56c" => 2325,
+  #     "700x20c" => 2086,
+  #     "700x23c" => 2097,
+  #     "700x25c" => 2105,
+  #     "700x28c" => 2136,
+  #     "700x32c" => 2155,
+  #     "700x35c" => 2168,
+  #     "700x38c" => 2180,
+  #     "700x40c" => 2200,  # guessing
+  #     "700x44c" => 2224,
+  #     "700x50c" => 2293,
+  #     "700x56c" => 2325,
 
-      "29x2.3"  => 2325
-    }[tire_size] || 0
-  end
+  #     "29x2.3"  => 2325
+  #   }[tire_size] || 0
+  # end
 
   def wheel_radius
     wheel_circumference / Math::PI / 2.0
