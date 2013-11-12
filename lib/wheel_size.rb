@@ -21,7 +21,7 @@ class GearRatio
         "700x56c" => 2325,
 
         "29x2.3"  => 2325
-      }[tire_size] || 0
+      }[tire_size]
     end
 
   end
