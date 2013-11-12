@@ -69,7 +69,7 @@ describe GearRatio::Calculator do
   describe "#gain_ratios" do
     it "calculates a set of gain ratios for a 1x10 with 175mm crankarms" do
       @calc.chainring_sizes     = [40]
-      @calc.cog_sizes  = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
+      @calc.cog_sizes           = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
       @calc.crank_length        = 175
       @calc.wheel_circumference = 2168
 
@@ -78,7 +78,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 1x10 with 200mm crankarms" do
       @calc.chainring_sizes     = [40]
-      @calc.cog_sizes  = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
+      @calc.cog_sizes           = [11, 13, 15, 17, 19, 21, 24, 28, 32, 36]
       @calc.crank_length        = 200
       @calc.wheel_circumference = 2200
 
@@ -87,7 +87,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 20 speed double with 190mm crankarms" do
       @calc.chainring_sizes     = [50, 34]
-      @calc.cog_sizes  = [12, 13, 14, 15, 16, 17, 19, 21, 24, 27]
+      @calc.cog_sizes           = [12, 13, 14, 15, 16, 17, 19, 21, 24, 27]
       @calc.crank_length        = 190
       @calc.wheel_circumference = 2105
 
@@ -97,7 +97,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 21 speed triple with 175mm crankarms" do
       @calc.chainring_sizes     = [52, 42, 30]
-      @calc.cog_sizes  = [11, 12, 13, 14, 15, 17, 19]
+      @calc.cog_sizes           = [11, 12, 13, 14, 15, 17, 19]
       @calc.crank_length        = 175
       @calc.wheel_circumference = 2136
 
@@ -108,7 +108,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a 20-inch wheeled 24 speed triple with 175mm crankarms" do
       @calc.chainring_sizes     = [52, 42, 30]
-      @calc.cog_sizes  = [12, 14, 16, 18, 21, 24, 28, 32]
+      @calc.cog_sizes           = [12, 14, 16, 18, 21, 24, 28, 32]
       @calc.crank_length        = 175
       @calc.wheel_circumference = 1491
 
@@ -119,7 +119,7 @@ describe GearRatio::Calculator do
 
     it "calculates a set of gain ratios for a singlespeed 29er with 185mm crankarms" do
       @calc.chainring_sizes     = [33]
-      @calc.cog_sizes  = [16]
+      @calc.cog_sizes           = [16]
       @calc.crank_length        = 185
       @calc.wheel_circumference = 2325
 
