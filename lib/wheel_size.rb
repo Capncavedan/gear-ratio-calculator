@@ -4,7 +4,7 @@ class GearRatio
 
     # accepts a string description, returns mm
     def self.circumference_of(tire_size)
-      tire_size = tire_size.to_s.gsub(/[\W]/, '')
+      tire_size = tire_size.to_s.downcase.gsub(/[\W]/, '')
       {
         "20x1.75" => 1491,
 
