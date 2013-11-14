@@ -18,48 +18,58 @@ describe GearRatio::Calculator do
       calc.wheel_circumference.should eql 2168
     end
 
-    describe "#initialize_chainring_sizes" do
+    describe "#chainring_sizes=" do
       it "reverse-sorts the values" do
-        @calc.send(:initialize_chainring_sizes, [30, 39, 52]).should eql [52, 39, 30]
+        @calc.chainring_sizes = [30, 39, 52]
+        @calc.chainring_sizes.should eql [52, 39, 30]
       end
 
       it "works with a string of values" do
-        @calc.send(:initialize_chainring_sizes, "30 39 52").should eql [52, 39, 30]
+        @calc.chainring_sizes = "30 39 52"
+        @calc.chainring_sizes.should eql [52, 39, 30]
       end
 
       it "works with a single value" do
-        @calc.send(:initialize_chainring_sizes, "40").should eql [40]
+        @calc.chainring_sizes = "40"
+        @calc.chainring_sizes.should eql [40]
       end
 
       it "works with a single value inside an array" do
-        @calc.send(:initialize_chainring_sizes, [40]).should eql [40]
+        @calc.chainring_sizes = [40]
+        @calc.chainring_sizes.should eql [40]
       end
 
       it "works with a single string inside an array" do
-        @calc.send(:initialize_chainring_sizes, ["40"]).should eql [40]
+        @calc.chainring_sizes = ["40"]
+        @calc.chainring_sizes.should eql [40]
       end
     end
 
 
     describe "#initialize_cog_sizes" do
       it "sorts the values" do
-        @calc.send(:initialize_cog_sizes, [15, 14, 13, 12, 11]).should eql [11, 12, 13, 14, 15]
+        @calc.cog_sizes = [15, 14, 13, 12, 11]
+        @calc.cog_sizes.should eql [11, 12, 13, 14, 15]
       end
 
       it "works with a string of values" do
-        @calc.send(:initialize_cog_sizes, "15, 14, 13, 12, 11").should eql [11, 12, 13, 14, 15]
+        @calc.cog_sizes = "15, 14, 13, 12, 11"
+        @calc.cog_sizes.should eql [11, 12, 13, 14, 15]
       end
 
       it "works with a single value" do
-        @calc.send(:initialize_cog_sizes, "18").should eql [18]
+        @calc.cog_sizes = "18"
+        @calc.cog_sizes.should eql [18]
       end
 
       it "works with a single value inside an array" do
-        @calc.send(:initialize_cog_sizes, [18]).should eql [18]
+        @calc.cog_sizes = [18]
+        @calc.cog_sizes.should eql [18]
       end
 
       it "works with a single string inside an array" do
-        @calc.send(:initialize_cog_sizes, ["18"]).should eql [18]
+        @calc.cog_sizes = ["18"]
+        @calc.cog_sizes.should eql [18]
       end
     end
 

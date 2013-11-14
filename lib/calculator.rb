@@ -2,14 +2,14 @@ class GearRatio
 
   class Calculator
 
-    attr_accessor :chainring_sizes
-    attr_accessor :cog_sizes
+    attr :chainring_sizes
+    attr :cog_sizes
     attr_accessor :crank_length
     attr_accessor :wheel_circumference
 
     def initialize(chainring_sizes: nil, cog_sizes: nil, crank_length: nil, wheel_circumference: nil)
-      @chainring_sizes = initialize_chainring_sizes(chainring_sizes)
-      @cog_sizes = initialize_cog_sizes(cog_sizes)
+      self.chainring_sizes = chainring_sizes
+      self.cog_sizes = cog_sizes
       @crank_length = crank_length
       @wheel_circumference = wheel_circumference
     end
@@ -35,24 +35,25 @@ class GearRatio
       ret
     end
 
+    # accepts integer, string, array
+    # sets a sorted array of integers
+    def chainring_sizes=(sizes)
+      @chainring_sizes = sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort.reverse
+    end
+
+    # accepts integer, string, array
+    # sets a sorted array of integers
+    def cog_sizes=(sizes)
+      @cog_sizes = sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort
+    end
+
+
     private
 
 
     def gain_ratio(chainring_size, cog_size)
       ratio = wheel_radius / crank_length * chainring_size / cog_size
       (ratio * 100).to_i/100.0
-    end
-
-    # accepts integer, string, array
-    # returns a sorted array of integers
-    def initialize_chainring_sizes(chainring_sizes)
-      chainring_sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort.reverse
-    end
-
-    # accepts integer, string, array
-    # returns a sorted array of integers
-    def initialize_cog_sizes(cog_sizes)
-      cog_sizes.to_s.scan(/\d+/).map{ |c| c.to_i }.sort
     end
 
     def wheel_diameter
