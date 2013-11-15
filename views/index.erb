@@ -49,7 +49,7 @@
       <% @calculator.chainring_sizes.each_with_index do |chainring_size, idx| %>
       <tr>
         <th><%= chainring_size %></th>
-        <% @calculator.gain_ratios[idx].each do |gain_ratio| %>
+        <% @calculator.gain_ratios[idx].reverse.each do |gain_ratio| %>
         <td><%= gain_ratio %></td>
         <% end %>
       </tr>
