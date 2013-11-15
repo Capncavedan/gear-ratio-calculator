@@ -10,8 +10,8 @@ class GearRatio
     def initialize(chainring_sizes: nil, cog_sizes: nil, crank_length: nil, wheel_circumference: nil)
       self.chainring_sizes = chainring_sizes
       self.cog_sizes = cog_sizes
-      @crank_length = crank_length
-      @wheel_circumference = wheel_circumference
+      @crank_length = crank_length.to_i
+      @wheel_circumference = wheel_circumference.to_i
     end
 
     def gain_ratios

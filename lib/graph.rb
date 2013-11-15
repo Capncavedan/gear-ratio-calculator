@@ -19,7 +19,7 @@ class GearRatio
       @calculator.chainring_sizes.each_with_index do |chainring_size, idx|
         g.data chainring_size.to_s, @calculator.gain_ratios[idx].reverse
       end
-      g.write('gain_ratios.png')
+      g.write('public/images/gain_ratios.png')
     end
 
   end
