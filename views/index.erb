@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Gain Ratio Calculator</title>
+</head>
+
+<body>
+
+  <h1>Gain Ratio Calculator</h1>
+
+  <form action="/" method="get">
+    <label for="chainring_sizes">Chainring Sizes</label>
+    <input type="text" name="chainring_sizes" id="chainring_sizes" value="<%= @chainring_sizes %>" />
+
+    <br/>
+
+    <label for="cog_sizes">Cog Sizes</label>
+    <input type="text" name="cog_sizes" id="cog_sizes" value="<%= @cog_sizes %>" />
+
+    <br/>
+
+    <label for="crank_length">Crank Arm Length</label>
+    <input type="text" name="crank_length" id="crank_length" value="<%= @crank_length %>" />
+
+    <br/>
+
+    <label for="wheel_circumference">Wheel Circumference</label>
+    <input type="text" name="wheel_circumference" id="wheel_circumference" value="<%= @wheel_circumference %>" />
+
+    <br/>
+    <br/>
+
+    <input type="submit" />
+  </form>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <% @calculator.cog_sizes.reverse.each do |cog_size| %>
+        <th><%= cog_size %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @calculator.chainring_sizes.each_with_index do |chainring_size, idx| %>
+      <tr>
+        <th><%= chainring_size %></th>
+        <% @calculator.gain_ratios[idx].each do |gain_ratio| %>
+        <td><%= gain_ratio %></td>
+        <% end %>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+  <br/>
+  <br/>
+
+  <img width="400" height="300" src="/images/gain_ratios.png" />
+</body>

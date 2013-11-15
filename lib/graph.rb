@@ -11,7 +11,7 @@ class GearRatio
       g = Gruff::Line.new
       g.title = 'Gain Ratios'
       hsh = {}
-      @calculator.cog_sizes.each_with_index do |c, idx|
+      @calculator.cog_sizes.reverse.each_with_index do |c, idx|
         hsh[idx] = c.to_s
       end
       g.labels = hsh
