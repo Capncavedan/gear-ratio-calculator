@@ -25,14 +25,3 @@ class GearRatio
   end
 
 end
-
-
-# calc = GearRatio::Calculator.new chainring_sizes: "52 42 30", cog_sizes: "11 12 13 14 15 17 19 21 23 25", crank_length: 200, wheel_circumference: 2158
-
-# calc.gain_ratios
-
-# graph = GearRatio::Graph.new(calc)
-
-# graph.gain_ratio_line_chart
-
-# `open gain_ratios.png`
