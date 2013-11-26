@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>Gain Ratio Calculator</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -10,30 +11,36 @@
   <form action="/" method="get">
     <label for="chainring_sizes">Chainring Sizes</label>
     <input type="text" name="chainring_sizes" id="chainring_sizes" value="<%= @chainring_sizes %>" />
+    <span class="hint">e.g. 52 42 30</span>
 
     <br/>
 
     <label for="cog_sizes">Cog Sizes</label>
     <input type="text" name="cog_sizes" id="cog_sizes" value="<%= @cog_sizes %>" />
+    <span class="hint">e.g. 11 12 13 14 15 17 19</span>
 
     <br/>
 
-    <label for="crank_length">Crank Arm Length</label>
+    <label for="crank_length">Crank Arm Length (mm)</label>
     <input type="text" name="crank_length" id="crank_length" value="<%= @crank_length %>" />
+    <span class="hint">in mm, e.g. 175</span>
 
     <br/>
 
-    <label for="wheel_circumference">Wheel Circumference</label>
+    <label for="wheel_circumference">Wheel Circumference (mm)</label>
     <input type="text" name="wheel_circumference" id="wheel_circumference" value="<%= @wheel_circumference %>" />
+    <span class="hint">in mm, e.g. 2162</span>
 
     <br/>
-    <br/>
 
+    <label></label>
     <input type="submit" />
   </form>
 
 
   <% unless params.empty? %>
+  <br/>
+
   <table>
     <thead>
       <tr>
@@ -57,11 +64,11 @@
 
     </tbody>
   </table>
-
-  <br/>
   <br/>
 
-  <img width="400" height="300" src="/images/gain_ratios.png" />
+  <img width="400" height="300" src="/graphs/<%= @graph_filename %>" />
   <% end %>
 
 </body>
+
+</html>

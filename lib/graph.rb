@@ -7,7 +7,7 @@ class GearRatio
       @calculator = calculator
     end
 
-    def gain_ratio_line_chart
+    def render_gain_ratio_line_chart
       g = Gruff::Line.new
       g.title = 'Gain Ratios'
       hsh = {}
@@ -19,7 +19,14 @@ class GearRatio
       @calculator.chainring_sizes.each_with_index do |chainring_size, idx|
         g.data chainring_size.to_s, @calculator.gain_ratios[idx].reverse
       end
-      g.write('public/images/gain_ratios.png')
+
+      filename = random_filename
+      g.write("public/graphs/#{filename}")
+      filename
+    end
+
+    def random_filename
+      "gain_ratios_#{rand(1_000_000).to_s}.png"
     end
 
   end
