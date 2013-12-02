@@ -1,6 +1,12 @@
 Gear Ratio Calculator
 =====================
 
+#### Website
+
+Gain ratio calculations with graphing: http://gear-ratio-calculator.herokuapp.com
+
+#### About this project
+
 Ruby library for calculating gear ratios, gain ratios, speeds, etc. for different sizes of cranksets, cassettes, wheels, and crank arms on bicycles.
 
 ---
